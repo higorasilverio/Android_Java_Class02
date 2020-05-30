@@ -53,4 +53,9 @@ class ProductListViewModel : ViewModel() {
         viewModelJob.cancel()
     }
 
+    fun refreshProducts() {
+        _products.value = null
+        getProducts()
+    }
+
 }

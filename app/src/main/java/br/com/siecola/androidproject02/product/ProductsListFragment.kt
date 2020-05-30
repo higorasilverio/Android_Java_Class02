@@ -31,11 +31,19 @@ class ProductsListFragment : Fragment() {
         val itemDecor = DividerItemDecoration(getContext(), VERTICAL);
         binding.rcvProducts.addItemDecoration(itemDecor);
 
-        binding.rcvProducts.adapter = ProductAdapter(ProductAdapter.ProductClickListener{
-            Log.i(TAG,"Product selected: ${it.name}")
+        binding.rcvProducts.adapter = ProductAdapter(ProductAdapter.ProductClickListener {
+            Log.i(TAG, "Product selected: ${it.name}")
+            this.findNavController()
+                .navigate(ProductsListFragmentDirections.actionShowProductDetail(it.code))
         })
 
         return binding.root
+
+        binding.productsRefresh.setOnRefreshListener {
+            Log.i(TAG, "Refreshing products list")
+            productListViewModel.refreshProducts()
+            binding.productsRefresh.isRefreshing = false
+        }
     }
 
 }
