@@ -1,3 +1,5 @@
+package br.com.siecola.androidproject02.productdetail
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
